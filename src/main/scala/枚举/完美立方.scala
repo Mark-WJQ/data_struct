@@ -1,9 +1,10 @@
 package 枚举
 
+import scala.io.StdIn
 
 
-@main def hello: Unit = {
-  val N = 24;
+@main def 完美立方: Unit = {
+  val N = StdIn.readInt();
   println(N)
 /*   var a = 2;
   var b = 1;

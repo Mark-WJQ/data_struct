@@ -7,9 +7,6 @@ import scala.io.StdIn
 
 @main def 假币问题: Unit =
 
-
-  val read = StdIn.readBoolean()
-
   val result = List(
     ("ABCD", "EFGH", "even"),
     ("ABCI", "EFJK", "up"),

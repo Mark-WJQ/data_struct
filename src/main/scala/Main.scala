@@ -5,7 +5,7 @@ import scala.util.control.Breaks
 @main def hello: Unit = 
   StdIn.readLine()
   Breaks.breakable{
-    
+    println("------")
   }
   println("Hello world!")
   println(msg)
