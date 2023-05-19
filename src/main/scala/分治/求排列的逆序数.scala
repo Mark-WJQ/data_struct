@@ -27,7 +27,61 @@ object 求排列的逆序数 {
 
     val array = Array(1,2,3,1,3)
 
-    println(count(array,0,2,4))
+    //println(count(array,0,2,4))
+
+    println(mergeSort(array,0,4))
+
+  }
+
+  def mergeSort(array: Array[Int], start: Int, end: Int): Int = {
+
+    if (start >= end) {
+      return 0
+    }
+    val mid = (start + end) / 2
+    val left = mergeSort(array, start, mid)
+    val right = mergeSort(array, mid+1, end)
+    val merge = mergeAndCount(array,start,mid,end)
+    merge+left+right
+  }
+
+
+  def mergeAndCount(src: Array[Int], s: Int, m: Int, e: Int):Int= {
+    var i = s;
+    var k = m+1;
+    var count = 0
+
+    var tmp = Array.ofDim[Int](e-s+1)
+    var idx = 0
+
+
+    while (i <= m && k <= e){
+      while (i <= m && src(i) > src(k)){
+        tmp(idx) = src(i)
+        idx+=1
+        i+=1
+        count+=(e-k+1)
+      }
+      while (k <= e && src(i) <= src(k)){
+        tmp(idx) = src(k)
+        idx+=1
+        k+=1
+      }
+    }
+    while (i <= m){
+      tmp(idx) = src(i)
+      idx += 1
+      i += 1
+    }
+    while (k <= e) {
+      tmp(idx) = src(k)
+      idx += 1
+      k += 1
+    }
+    for (j <- s to e){
+      src(j) = tmp(j-s)
+    }
+    count
   }
 
 

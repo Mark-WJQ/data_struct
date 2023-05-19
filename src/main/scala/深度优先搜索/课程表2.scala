@@ -4,6 +4,7 @@ import 深度优先搜索.课程表.{Pre, canFinish}
 
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
+import scala.util.control.Breaks.{breakable,break}
 
 object 课程表2 {
 
@@ -29,7 +30,6 @@ object 课程表2 {
    * @return
    */
   def findOrder(numCourses: Int, prerequisites: Array[Array[Int]]): Array[Int] = {
-
     val tailChain = Array.ofDim[Pre](numCourses)
     val tailSize = Array.ofDim[Int](numCourses)
     val chain = Array.ofDim[Pre](numCourses)
