@@ -21,6 +21,9 @@ object 接雨水{
        breakable{
          leftMax = math.max(height(left), leftMax)
          rightMax = math.max(height(right), rightMax)
+         // 这里有隐含条件，如果说右面的指针不移动（rightMax没变），左面的指针移动了，有两种情况，当前左数是否小于当前右数（隐含rightMax），
+         // 是的话，直接使用最大左数-当前左数即为当前节点可存数据
+         // 否则 保持当前左数不变，将右指针指向right-1，求右节点可以放多少水
          if (height(left) < height(right)) {
            ans += (leftMax - height(left))
            left += 1
