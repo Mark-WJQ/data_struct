@@ -10,6 +10,16 @@ object 三数之和 {
     println(threeSum(Array(0,0,0,0,0)))
   }
 
+
+  /**
+   * 先排序
+   * 使用头指针指向起点 nh，尾指针指向终点 nt
+   *  v=  target - nh+nt
+   *  if(v > 0) nt 向前移动  v<0 nh 后移  
+   * 
+   * @param nums
+   * @return
+   */
   def threeSum(nums: Array[Int]): List[List[Int]] = {
     val sortNums = nums.sorted
     val l = nums.length

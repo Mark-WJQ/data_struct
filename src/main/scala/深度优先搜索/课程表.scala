@@ -26,6 +26,7 @@ object 课程表 {
   def canFinish(numCourses: Int, prerequisites: Array[Array[Int]]): Boolean = {
     val visited = Array.ofDim[Int](numCourses)
 
+    // 构建邻接表
     val chain = Array.ofDim[Pre](numCourses)
     for (arr <- prerequisites){
       var pre = chain(arr(0))

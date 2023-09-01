@@ -1,10 +1,18 @@
 package 单调栈
 
+import scala.collection.mutable
+
+
 object 柱状图中最大矩形 {
 
-
-
   def main(args: Array[String]): Unit = {
+    println(largestRectangleArea(Array(2,1,5,6,2,3)));
+    println(largestRectangleArea(Array(2,4)));
+    println(largestRectangleArea(Array(1)));
+    println(largestRectangleArea(Array(2,3)));
+
+
+
 
   }
 
@@ -27,14 +35,45 @@ object 柱状图中最大矩形 {
    *    5. 针对每个柱子都这样计算，找出最大的面积
    * 3. 使用单调栈
    *    1. 从第二种解法中可以抽象出，我们是在求，第一个比当前位置低的位置，设当前位置为 i,高度记为 hi；第一个比当前位置低的为 j，高度记为 hj； 中间位置为k，高度记为 hk； 则有  hk >= hi > hj, j < k <= i
-   *    2. 当我们在使用单调栈计算这种情况时,单调递减 此时 hj 在栈中，如果 hk >= hj 记录k 位置左边第一个小于他的位置为j，且hk不入栈，如果 hk < hj 则将 hk 入栈
+   *    2. 当我们在使用单调栈计算这种情况时,单调递增 此时 hj 在栈中，如果 hk >= hj 记录k 位置左边第一个小于他的位置为j，hk入栈，如果 hk < hj 将hj 出栈，知道找到比hk小的位置 j，记录j，并入栈hk
+   *    3. 计算右边第一个小于当前的index，单调递增
+   *    然后遍历高度数组
    *
    * @param args
    */
   def largestRectangleArea(heights: Array[Int]): Int = {
+    val hl = heights.length
+    val stack = mutable.Stack[Int](-1)
+    val left  = Array.ofDim[Int](hl)
+    val right  = Array.ofDim[Int](hl)
+    for (i <- 0 until(hl)){
+      var top = stack.head
+      while (top!= -1 && heights(i) <= heights(top) ){
+        stack.pop()
+        top = stack.head
+      }
+      stack.push(i)
+      left(i) = top
 
+    }
 
-    0
+    //求右边的位置
+    stack.clear()
+    stack.push(hl)
+    for (i <- hl-1 to(0) by(-1)){
+      var top = stack.head
+      while (top != hl && heights(i) <= heights(top)) {
+        stack.pop()
+        top = stack.head
+      }
+      stack.push(i)
+      right(i) = top
+    }
+    var max = heights(0);
+    for (i <- 0 until(hl)){
+     max = math.max( heights(i) * (right(i)-(left(i)+1)),max)
+    }
+    max
   }
 
 }

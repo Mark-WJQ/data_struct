@@ -9,6 +9,11 @@ object 接雨水{
    }
 
 
+  /**
+   * 使用单调栈也可以
+   * @param height
+   * @return
+   */
    def trap(height: Array[Int]): Int = {
      val l = height.length
      var leftMax = 0

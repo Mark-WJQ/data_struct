@@ -43,7 +43,7 @@ object 有效的数独 {
     map(0) = Array(0,1,2)
     map(1) = Array(3,4,5)
     map(2) = Array(6,7,8)
-    // 可以使用位计算来存储当前状态
+    // 可以使用位来存储当前状态
     val row = Array.ofDim[Int](9,9)
     val col = Array.ofDim[Int](9,9)
 
