@@ -1,4 +1,4 @@
-package 双指针
+package 链表
 
 /**
  * 快慢指针
